@@ -5,6 +5,7 @@ var target_scene: String = ""
 
 
 func _ready() -> void:
+    $transition.visible = true
     $anim.play_backwards("appear")
 
 

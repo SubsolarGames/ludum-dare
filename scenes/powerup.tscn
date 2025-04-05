@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bih14ghx15uk6"]
+
+[ext_resource type="Texture2D" uid="uid://njhyb04g5i3j" path="res://assets/powerup.png" id="1_8vsy1"]
+[ext_resource type="Script" uid="uid://c6njhgsl0b606" path="res://scripts/powerup.gd" id="1_ih772"]
+[ext_resource type="PackedScene" uid="uid://byhci2kfstxmh" path="res://scenes/powerup_particles.tscn" id="2_406cw"]
+
+[sub_resource type="Curve" id="Curve_8vsy1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.755474, 0.995994), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_8vsy1"]
+offsets = PackedFloat32Array(0.574442, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ih772"]
+radius = 6.08276
+
+[node name="powerup" type="Node2D"]
+script = ExtResource("1_ih772")
+particles = ExtResource("2_406cw")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -5)
+amount = 5
+lifetime = 0.75
+spread = 180.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+damping_min = 50.0
+damping_max = 50.0
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_8vsy1")
+color = Color(0, 0.6, 0.858824, 1)
+color_ramp = SubResource("Gradient_8vsy1")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+texture = ExtResource("1_8vsy1")
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+shape = SubResource("CircleShape2D_ih772")
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

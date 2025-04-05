@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bts1rh0r2u2un"]
+
+[ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_0wcar"]
+
+[sub_resource type="Curve" id="Curve_0wcar"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.76764, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="jump_particles" type="CPUParticles2D"]
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 50)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+damping_min = 50.0
+damping_max = 50.0
+angle_max = 360.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_0wcar")
+script = ExtResource("1_0wcar")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

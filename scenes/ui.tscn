@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf5egcy3v24n6"]
+[gd_scene load_steps=10 format=3 uid="uid://cf5egcy3v24n6"]
 
 [ext_resource type="Script" uid="uid://diy36wookv865" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://yw8pypnucew3" path="res://scripts/cursor.gd" id="2_x4jx1"]
 [ext_resource type="Shader" uid="uid://bkel7vaj2wtr5" path="res://shaders/transition.gdshader" id="3_yev5y"]
+[ext_resource type="LabelSettings" uid="uid://7g156wkvquy2" path="res://fonts/defaultfont.tres" id="4_gdt2y"]
+[ext_resource type="Script" uid="uid://wwubfb1hodhc" path="res://scripts/timer.gd" id="5_wm3ai"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdt2y"]
 shader = ExtResource("3_yev5y")
@@ -53,6 +55,7 @@ script = ExtResource("1_nt7q6")
 script = ExtResource("2_x4jx1")
 
 [node name="transition" type="ColorRect" parent="."]
+visible = false
 modulate = Color(0.0941176, 0.0784314, 0.145098, 1)
 material = SubResource("ShaderMaterial_gdt2y")
 anchors_preset = 15
@@ -65,5 +68,20 @@ grow_vertical = 2
 libraries = {
 &"": SubResource("AnimationLibrary_gdt2y")
 }
+
+[node name="timer" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = 15.0
+offset_right = 51.0
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "3.03 sec"
+label_settings = ExtResource("4_gdt2y")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_wm3ai")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

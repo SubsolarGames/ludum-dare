@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlun0t8ubfsge"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_nggej"]
+[ext_resource type="PackedScene" uid="uid://cnhoili2xoo20" path="res://scenes/demon_particles.tscn" id="2_6k52l"]
+[ext_resource type="Texture2D" uid="uid://d3205g0uxaxxn" path="res://assets/basic_demon.png" id="2_j1gdn"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_xq22n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1gdn"]
+size = Vector2(7, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6k52l"]
+resource_local_to_scene = true
+shader = ExtResource("2_xq22n")
+shader_parameter/active = false
+
+[node name="basic_demon" instance=ExtResource("1_nggej")]
+particles = ExtResource("2_6k52l")
+health = 5.0
+innac = 100.0
+speed_min = 30.0
+speed_max = 60.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_j1gdn")
+
+[node name="sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_6k52l")
+texture = ExtResource("2_j1gdn")

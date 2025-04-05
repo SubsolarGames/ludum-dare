@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://7g156wkvquy2"]
+
+[ext_resource type="FontFile" uid="uid://cfs44d0l12fbl" path="res://fonts/Not Jam UI 12.ttf" id="1_jgsmb"]
+
+[resource]
+font = ExtResource("1_jgsmb")
+font_size = 12

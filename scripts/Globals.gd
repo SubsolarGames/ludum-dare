@@ -2,11 +2,13 @@ extends Node
 
 
 var player: CharacterBody2D
+var checkpoint: Vector2 = Vector2.ZERO
 
+var platformer: bool = true
 var shake: float = 0.0
 var shake_ticker: float = 0.0
-
 var screenshake_mul: float = 1.0
+var timer: float = 0
 
 
 func screenshake(strength, length) -> void:

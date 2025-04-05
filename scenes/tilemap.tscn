@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b20y4832jdfxf"]
+
+[ext_resource type="Texture2D" uid="uid://cwhb3k8eoertr" path="res://assets/tileset.png" id="1_55lsm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38yc0"]
+texture = ExtResource("1_55lsm")
+0:0/0 = 0
+0:0/0/probability = 0.6
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/probability = 0.2
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/probability = 0.2
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.8751, 2.27521, -3.70959, 1.68168, -1.03868, -1.38491, 2.62144, 2.07737, 5.88588, 0.692455, 6.38049, 8, -7.17187, 8)
+
+[sub_resource type="TileSet" id="TileSet_nbq0r"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 4
+physics_layer_1/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_38yc0")
+
+[node name="tilemap" type="TileMapLayer"]
+tile_set = SubResource("TileSet_nbq0r")
