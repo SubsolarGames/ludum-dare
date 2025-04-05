@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://vyni8kjujpnq"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_351y2"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_5t8dq"]
+[ext_resource type="PackedScene" uid="uid://b6cb1g4i48p48" path="res://scenes/bigdemon_particles.tscn" id="2_pkgu0"]
+[ext_resource type="Texture2D" uid="uid://dsixcnij7n06u" path="res://assets/big_demon.png" id="3_5t8dq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pkgu0"]
+radius = 5.0
+height = 22.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkgu0"]
+resource_local_to_scene = true
+shader = ExtResource("2_5t8dq")
+shader_parameter/active = false
+
+[node name="big_demon" instance=ExtResource("1_351y2")]
+particles = ExtResource("2_pkgu0")
+health = 15.0
+innac = 25.0
+speed_min = 10.0
+speed_max = 30.0
+screenshake_die = 4
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_pkgu0")
+
+[node name="sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_pkgu0")
+texture = ExtResource("3_5t8dq")

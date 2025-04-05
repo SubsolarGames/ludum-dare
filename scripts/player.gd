@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var friction: float = 10
 @export var top_accel: float = 15
 @export var top_friction: float = 18
-@export var jumps: int = 2
+@export var jumps: int = 1
 
 var invincible: bool = false
 var can_move: bool = true
@@ -36,16 +36,10 @@ func _process(delta: float) -> void:
 	Globals.timer += delta
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
-		Globals.end_time = Globals.timer * Globals.time_mul
-		Globals.platformer = not Globals.platformer
-		Globals.timer = 0.0
-		Globals.shooter_start.emit()
 
 	if Globals.platformer:
 		gunscale = Vector2.ZERO
 		
-
 		var direction: float = 0
 		
 		if not is_on_floor():
@@ -58,11 +52,13 @@ func _physics_process(delta: float) -> void:
 
 		if can_move:
 			if Input.is_action_just_pressed("up") or $jump_buffer.time_left > 0:
-				if current_jumps > 0 or $cyoate_timer.time_left > 0:
+				if current_jumps > 0 or is_on_floor() or $cyoate_timer.time_left > 0:
 					$jump_buffer.stop()
-					$cyoate_timer.stop()
 
-					current_jumps -= 1
+					if is_on_floor() or $cyoate_timer.time_left > 0:
+						$cyoate_timer.stop()
+					else:
+						current_jumps -= 1
 
 					velocity.y = -jump_force
 
@@ -102,7 +98,7 @@ func _physics_process(delta: float) -> void:
 
 		if direction_vector != Vector2.ZERO:
 			$anim.play("walk")
-			velocity = lerp(velocity, (speed - (gun.weight*int(Input.is_action_pressed("mouse action")))) * direction_vector, 1-(0.5**(top_accel * delta)))
+			velocity = lerp(velocity, (speed - (gun.weight*int(false))) * direction_vector, 1-(0.5**(top_accel * delta)))
 		else:
 			$anim.play("idle")
 			velocity = lerp(velocity, Vector2.ZERO, 1-(0.5**(top_friction * delta)))
@@ -156,14 +152,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func take_damage() -> void:
+func damage(_amount: int) -> void:
 	if not invincible:
 		invincible = true
 		can_move = false
-
-		get_tree().create_timer(0.1).timeout.connect(func():
-			invincible = false
-		)
 
 		var inst: CPUParticles2D = die_particles.instantiate()
 		inst.position = position
@@ -173,25 +165,39 @@ func take_damage() -> void:
 		Globals.screenshake(4, 0.2)
 		Globals.slowdown(0.05, 0.5)
 
-		get_tree().create_timer(0.5 * Engine.time_scale).timeout.connect(func():
+		if not Globals.platformer:
+			Globals.level -= 1
+			Globals.timer = 0.0
+
+			Globals.slowdown(0.05, 0.75)
+			Globals.screenshake(5, 0.3)
+
+			Globals.next_level.emit()
+
+		else:
+			get_tree().create_timer(0.1).timeout.connect(func():
+				invincible = false
+			)
 			
-			position = Globals.checkpoint
+			get_tree().create_timer(0.5 * Engine.time_scale).timeout.connect(func():
+				
+				position = Globals.checkpoint
 
-			var inst2: CPUParticles2D = die_particles.instantiate()
-			inst2.position = position
-			get_parent().add_child(inst2)
+				var inst2: CPUParticles2D = die_particles.instantiate()
+				inst2.position = position
+				get_parent().add_child(inst2)
 
-			can_move = true
-			velocity = Vector2.ZERO
-		)
+				can_move = true
+				velocity = Vector2.ZERO
+			)
 
 func _on_area_body_shape_entered(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	take_damage()
+	damage(1)
 
 
 func _on_area_body_entered(_body: Node2D) -> void:
-	take_damage()
+	damage(1)
 
 
 func _on_area_area_entered(_area: Area2D) -> void:
-	take_damage()
+	damage(1)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5qgw0ptjgtkf"]
+
+[ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_e2y6p"]
+
+[sub_resource type="Curve" id="Curve_evr2q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.827251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="flag_particles" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
+damping_min = 100.0
+damping_max = 200.0
+angle_max = 360.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_evr2q")
+color = Color(0.388235, 0.780392, 0.301961, 1)
+script = ExtResource("1_e2y6p")

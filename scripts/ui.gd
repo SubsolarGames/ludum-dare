@@ -7,6 +7,8 @@ var target_scene: String = ""
 func _ready() -> void:
     $transition.visible = true
     $anim.play_backwards("appear")
+    Globals.player_died.connect(func():
+        $anim.play_backwards("appear"))
 
 
 func transition(scene_name: String) -> void:

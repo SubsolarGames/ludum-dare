@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c2ldykwewema2" path="res://assets/bomb.png" id="3_jbks0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8x76h"]
+resource_local_to_scene = true
 shader = ExtResource("3_dl1rp")
 shader_parameter/end_time = 3.0
 shader_parameter/start_freq = 1.0

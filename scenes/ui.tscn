@@ -62,7 +62,7 @@ script = ExtResource("2_x4jx1")
 
 [node name="transition" type="ColorRect" parent="."]
 visible = false
-modulate = Color(0.0941176, 0.0784314, 0.145098, 1)
+modulate = Color(0.227451, 0.266667, 0.4, 1)
 material = SubResource("ShaderMaterial_gdt2y")
 anchors_preset = 15
 anchor_right = 1.0

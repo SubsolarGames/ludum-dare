@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6cb1g4i48p48"]
+
+[ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_u4iyd"]
+[ext_resource type="Texture2D" uid="uid://b4786spifffcq" path="res://assets/ring2.png" id="2_u4iyd"]
+
+[sub_resource type="Curve" id="Curve_evr2q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.827251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_fbdse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p7225"]
+resource_name = "appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbdse"]
+_data = {
+&"RESET": SubResource("Animation_fbdse"),
+&"appear": SubResource("Animation_p7225")
+}
+
+[node name="bigdemon_particles" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+damping_min = 100.0
+damping_max = 200.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_evr2q")
+color = Color(0.894118, 0.231373, 0.266667, 1)
+script = ExtResource("1_u4iyd")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ring")
+libraries = {
+&"": SubResource("AnimationLibrary_fbdse")
+}
+autoplay = "appear"
+
+[node name="ring" type="Sprite2D" parent="."]
+modulate = Color(0.894118, 0.231373, 0.266667, 1)
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_u4iyd")

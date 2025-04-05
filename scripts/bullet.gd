@@ -7,6 +7,11 @@ var damage: float = 0
 var parent: CharacterBody2D
 var speed: float = 0.0
 
+
+func _ready() -> void:
+    Globals.player_died.connect(func():
+        queue_free())
+
 func _process(delta: float) -> void:
     position += velocity * delta
 

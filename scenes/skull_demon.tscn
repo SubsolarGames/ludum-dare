@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdbaufigjyw3i"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_17i4x"]
+[ext_resource type="Script" uid="uid://bm5fj301of64s" path="res://scripts/skull_demon.gd" id="2_rld7o"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_yxql2"]
+[ext_resource type="PackedScene" uid="uid://b6cb1g4i48p48" path="res://scenes/bigdemon_particles.tscn" id="3_mdq8p"]
+[ext_resource type="Texture2D" uid="uid://dkr8spd4mqj41" path="res://assets/skull demon.png" id="4_rld7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rld7o"]
+size = Vector2(7, 11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rld7o"]
+resource_local_to_scene = true
+shader = ExtResource("2_yxql2")
+shader_parameter/active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mdq8p"]
+radius = 97.0052
+
+[node name="skull_demon" instance=ExtResource("1_17i4x")]
+script = ExtResource("2_rld7o")
+particles = ExtResource("3_mdq8p")
+innac = 20.0
+speed_max = 75.0
+screenshake_die = 4
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_rld7o")
+
+[node name="sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_rld7o")
+texture = ExtResource("4_rld7o")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_mdq8p")
+
+[node name="fire_timer" type="Timer" parent="." index="4"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

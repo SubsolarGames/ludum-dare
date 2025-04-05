@@ -2,6 +2,9 @@ extends Node
 
 
 signal shooter_start
+signal next_level
+signal player_died 
+signal finished
 
 var player: CharacterBody2D
 var checkpoint: Vector2 = Vector2.ZERO
@@ -11,12 +14,12 @@ var shake: float = 0.0
 var shake_ticker: float = 0.0
 var screenshake_mul: float = 1.0
 var timer: float = 0
-var time_mul: float = 3
+var time_mul: float = 2
 
 var end_time: float = 0.0
 var powerups: Array[float] = []
 var blue_flash: float = 0.0
-
+var level: int = 1
 
 func screenshake(strength, length) -> void:
     shake = max(shake, strength) * screenshake_mul

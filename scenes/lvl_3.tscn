@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=4 uid="uid://dq5mei6fye6cu"]
+
+[ext_resource type="PackedScene" uid="uid://cieejwek827ra" path="res://scenes/world.tscn" id="1_3x3qj"]
+
+[node name="lvl_3" instance=ExtResource("1_3x3qj")]
+
+[node name="tilemap" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD7/wMAAAABAAAAAAD7/wQAAAAAAAAAAAD8/wMAAAABAAAAAAD8/wQAAAAAAAAAAAD9/wMAAAAAAAEAAAD9/wQAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAEAAAABAAMAAAAAAAEAAAABAAQAAAAAAAEAAAACAAMAAAABAAAAAAACAAQAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAA=")

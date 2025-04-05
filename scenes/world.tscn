@@ -1,20 +1,18 @@
-[gd_scene load_steps=9 format=4 uid="uid://cieejwek827ra"]
+[gd_scene load_steps=7 format=3 uid="uid://cieejwek827ra"]
 
+[ext_resource type="Script" uid="uid://bgv7w75qe8q1f" path="res://scripts/level.gd" id="1_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cf5egcy3v24n6" path="res://scenes/ui.tscn" id="2_4wyf3"]
 [ext_resource type="Script" uid="uid://dhkuityjw3rd1" path="res://scripts/camera.gd" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b20y4832jdfxf" path="res://scenes/tilemap.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://bm2tmyoo33bk0" path="res://scenes/player.tscn" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://c4no322yfb11k" path="res://scripts/blueflash.gd" id="5_4mrxx"]
-[ext_resource type="PackedScene" uid="uid://d7jfo6hicsyx" path="res://scenes/saw.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://bih14ghx15uk6" path="res://scenes/powerup.tscn" id="6_qfnet"]
-[ext_resource type="PackedScene" uid="uid://dlun0t8ubfsge" path="res://scenes/basic_demon.tscn" id="7_i7141"]
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_qfnet")
 
 [node name="ui" parent="." instance=ExtResource("2_4wyf3")]
 
 [node name="tilemap" parent="." instance=ExtResource("3_4wyf3")]
-tile_map_data = PackedByteArray("AAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAABAAAAAAAGAAsAAAABAAAAAAAHAAsAAAAAAAEAAAAIAAsAAAAAAAEAAAAJAAsAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAFAAwAAAAAAAEAAAAEAAwAAAABAAAAAAADAAwAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAAOAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAMAAoAAAABAAAAAAALAA8AAAABAAAAAAAKAA8AAAAAAAAAAAAJAA8AAAABAAAAAAAJABAAAAAAAAAAAAAKABAAAAAAAAAAAAALABAAAAAAAAAAAAAIABAAAAAAAAEAAAABAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAD//wYAAAAAAAEAAAD//wcAAAAAAAAAAAD+/wcAAAABAAAAAAAAAAcAAAABAAAAAAAFAAoAAAABAAAAAAAFAAkAAAAAAAEAAAAFAAgAAAABAAAAAAAGAAoAAAABAAAAAAAGAAkAAAAAAAEAAAAGAAgAAAAAAAEAAAAHAAcAAAABAAEAAAAIAAcAAAABAAEAAAAKAA4AAAABAAEAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAkAAAAAAAAAAAAHAAkAAAAAAAEAAAAJAAoAAAAAAAAAAAAJAAkAAAAAAAEAAAAJAAgAAAABAAAAAAAIAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAEAAAADAAoAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAABAAAAAAACAAwAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAEAAAARAAoAAAABAAAAAAARAAkAAAAAAAAAAAAQAAkAAAAAAAEAAAAPAAkAAAAAAAEAAAAOAAsAAAAAAAEAAAAOAAwAAAABAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAAAAAAOAA8AAAABAAAAAAANAA8AAAAAAAAAAAAMAA8AAAABAAAAAAAMAA4AAAABAAAAAAAMAA0AAAAAAAEAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAANAAsAAAAAAAAAAAANAA4AAAABAAAAAAANAA0AAAAAAAAAAAAMAAsAAAAAAAEAAAAPAAsAAAABAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAARAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAASAAsAAAAAAAAAAAASAAoAAAAAAAAAAAATAAoAAAABAAAAAAA=")
 
 [node name="player" parent="." instance=ExtResource("4_k0juu")]
 
@@ -30,30 +28,3 @@ offset_right = 136.0
 offset_bottom = 140.0
 color = Color(0.172549, 0.909804, 0.960784, 1)
 script = ExtResource("5_4mrxx")
-
-[node name="saw" parent="." instance=ExtResource("5_71j4m")]
-position = Vector2(210, 118)
-
-[node name="powerup" parent="." instance=ExtResource("6_qfnet")]
-position = Vector2(76, 108)
-
-[node name="powerup2" parent="." instance=ExtResource("6_qfnet")]
-position = Vector2(251, 135)
-
-[node name="basic_demon" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(87, -156)
-
-[node name="basic_demon2" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(76, -160)
-
-[node name="basic_demon3" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(69, -143)
-
-[node name="basic_demon4" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(82, -137)
-
-[node name="basic_demon5" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(100, -143)
-
-[node name="basic_demon6" parent="." instance=ExtResource("7_i7141")]
-position = Vector2(100, -163)
