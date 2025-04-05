@@ -12,11 +12,18 @@ extends CharacterBody2D
 @export var friction: float = 10
 @export var top_accel: float = 15
 @export var top_friction: float = 18
+@export var jumps: int = 2
 
 var invincible: bool = false
 var can_move: bool = true
+var current_jumps: int = 0
 
-var pistol = Gun.new(0, 1, 0, 200, 0.2, 5, load("res://scenes/bullet.tscn"), 1, 75.0)
+var pistol = Gun.new(0, 1, 0, 250, 0.2, 5, load("res://scenes/bullet.tscn"), 1, 50.0)
+var shotgun = Gun.new(1, 3, 45, 200, 0.3, 10, load("res://scenes/bluebullet.tscn"), 5, 75.0)
+var minigun = Gun.new(2, 2, 15, 250, 0.05, 5, load("res://scenes/bluebullet.tscn"), 1, 25.0)
+var sniper = Gun.new(3, 1, 0, 300, 0.3, 0, load("res://scenes/piercebullet.tscn"), 100, 25.0)
+var clawgun = Gun.new(4, 1, 0, 150, 0.75, 0, load("res://scenes/bombbullet.tscn"), 2.5, 100.0)
+var wand = Gun.new(5, 36, 360, 150, 0.75, 0, load("res://scenes/homebullet.tscn"), 1, 100.0)
 
 var gun = pistol
 var gunscale: Vector2 = Vector2.ZERO
@@ -25,13 +32,19 @@ func _ready() -> void:
 	Globals.player = self
 
 
+func _process(delta: float) -> void:
+	Globals.timer += delta
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
+		Globals.end_time = Globals.timer * Globals.time_mul
 		Globals.platformer = not Globals.platformer
-		
+		Globals.timer = 0.0
+		Globals.shooter_start.emit()
+
 	if Globals.platformer:
 		gunscale = Vector2.ZERO
-		Globals.timer += delta
+		
 
 		var direction: float = 0
 		
@@ -39,14 +52,17 @@ func _physics_process(delta: float) -> void:
 			$dust.emitting = false
 			velocity.y += gravity * delta
 		else:
+			current_jumps = jumps
 			$dust.emitting = true
 			$cyoate_timer.start()
 
 		if can_move:
 			if Input.is_action_just_pressed("up") or $jump_buffer.time_left > 0:
-				if is_on_floor() or $cyoate_timer.time_left > 0:
+				if current_jumps > 0 or $cyoate_timer.time_left > 0:
 					$jump_buffer.stop()
 					$cyoate_timer.stop()
+
+					current_jumps -= 1
 
 					velocity.y = -jump_force
 
@@ -118,19 +134,21 @@ func _physics_process(delta: float) -> void:
 				shell.rotation = $gun.rotation
 				get_parent().add_child(shell)
 
-				var angle = $gun.rotation_degrees
+				var angle = 0
 				var angle_dir = 1
 				for i in range(gun.bullets):
-					var mod_angle = angle + randf_range(-gun.innac, gun.innac)
+
+					var mod_angle = angle + randf_range(-gun.innac, gun.innac) + $gun.rotation_degrees
 					var inst = gun.bullet_scene.instantiate()
 					inst.position = $gun/gun_marker.global_position
 					inst.rotation_degrees = mod_angle
 					inst.velocity = Vector2(gun.bullet_speed, 0).rotated(deg_to_rad(mod_angle))
 					inst.damage = gun.bullet_damage
 					inst.parent = self
+					inst.speed = gun.bullet_speed
 					get_parent().add_child(inst)
 
-					angle += angle_dir + (gun.bullet_spread/gun.bullets)
+					angle += angle_dir * ((gun.bullet_spread/gun.bullets) * (i+1))
 					angle_dir *= -1
 	
 	$gun.scale = lerp($gun.scale, gunscale, 10 * delta)

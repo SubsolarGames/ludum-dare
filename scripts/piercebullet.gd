@@ -13,12 +13,13 @@ func _process(delta: float) -> void:
 
 
 func _on_area_body_entered(body:Node2D) -> void:
-    var inst: CPUParticles2D = particles.instantiate()
-    inst.position = position
-    inst.rotation = rotation
-    get_parent().add_child(inst)
-
+    
     if "damage" in body:
         body.damage(damage)
+    else:
+        queue_free()
+        var inst: CPUParticles2D = particles.instantiate()
+        inst.position = position
+        inst.rotation = rotation
+        get_parent().add_child(inst)
 
-    queue_free()

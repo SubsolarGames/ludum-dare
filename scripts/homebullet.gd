@@ -7,9 +7,11 @@ var damage: float = 0
 var parent: CharacterBody2D
 var speed: float = 0.0
 
+@onready var accel: float =randf_range(1, 5)
+
 func _process(delta: float) -> void:
     position += velocity * delta
-
+    velocity = lerp(velocity, (get_global_mouse_position() - position).normalized() * (speed+50), 1-(0.5**(accel * delta)))
 
 
 func _on_area_body_entered(body:Node2D) -> void:

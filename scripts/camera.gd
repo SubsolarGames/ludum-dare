@@ -7,6 +7,8 @@ var target_position: Vector2 = Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
+	cursor_weight = 0.2 * int(not Globals.platformer)
+
 	Globals.update_shake(delta)
 		
 	offset = Vector2(randf_range(-Globals.shake, Globals.shake), randf_range(-Globals.shake, Globals.shake))

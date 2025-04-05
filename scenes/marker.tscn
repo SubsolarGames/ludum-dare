@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://do7w0nvqwwlyb"]
+
+[ext_resource type="Texture2D" uid="uid://s7wteh66630f" path="res://assets/marker.png" id="1_hy4mp"]
+[ext_resource type="Script" uid="uid://c3kl8rfcvufin" path="res://scripts/marker.gd" id="2_plg8q"]
+
+[node name="marker" type="Sprite2D"]
+texture = ExtResource("1_hy4mp")
+script = ExtResource("2_plg8q")

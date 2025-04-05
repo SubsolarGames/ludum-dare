@@ -10,6 +10,7 @@ func _ready() -> void:
 
 
 func transition(scene_name: String) -> void:
+    
     $anim.play("appear")
     target_scene = "res://scenes/" + scene_name + ".tscn"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bm2tmyoo33bk0"]
+[gd_scene load_steps=21 format=3 uid="uid://bm2tmyoo33bk0"]
 
 [ext_resource type="Texture2D" uid="uid://w3qkml30io4f" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b7jv38klwvb2u" path="res://scripts/player.gd" id="1_g2els"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cy2su46h4uujg" path="res://scenes/shell_particles.tscn" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dm6e5cbag2wkw" path="res://assets/circle.png" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://ddrcn5efwdpmw" path="res://assets/pistol.png" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://cm4alo3a33h8u" path="res://assets/shotgun.png" id="7_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://bcum387l62nj8" path="res://assets/minigun.png" id="8_jej6c"]
+[ext_resource type="Texture2D" uid="uid://dyk4yhmv6ixga" path="res://assets/sniper.png" id="9_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://cgipd0rutyvi4" path="res://assets/clawgun.png" id="10_oprun"]
+[ext_resource type="Texture2D" uid="uid://dqq6cxpkqlimd" path="res://assets/wand.png" id="11_a8ls1"]
 
 [sub_resource type="Curve" id="Curve_tuyoq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791971, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -152,6 +157,21 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_tuyoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3v2ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jej6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f1ej7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oprun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a8ls1")
 }],
 "loop": true,
 "name": &"default",
@@ -211,7 +231,7 @@ offset = Vector2(15, 0)
 
 [node name="flash" type="Sprite2D" parent="gun"]
 modulate = Color(0.996078, 0.905882, 0.380392, 1)
-position = Vector2(25, -1)
+position = Vector2(28, -1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_qlg0r")
 

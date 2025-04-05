@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_body_entered(_body:Node2D) -> void:
+    Globals.powerups.append(Globals.timer * Globals.time_mul)
+
     queue_free()
 
     Globals.screenshake(3, 0.2)

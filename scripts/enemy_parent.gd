@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var speed_max: float = 50
 @export var accel: float = 5
 @export var friction: float = 8
+@export var screenshake_hit: int = 1
+@export var screenshake_die: int = 3
 
 @onready var speed: float = randf_range(speed_min, speed_max)
 @onready var innac_vector: Vector2 = Vector2(randf_range(-innac, innac), randf_range(-innac, innac))
@@ -28,7 +30,7 @@ func damage(amount: int):
         health -= amount
 
         if health > 0:
-            Globals.screenshake(1, 0.2)
+            Globals.screenshake(screenshake_hit, 0.2)
 
             $sprite.material.set_shader_parameter("active", true)
             get_tree().create_timer(0.15).timeout.connect(func():
@@ -37,7 +39,7 @@ func damage(amount: int):
         else:
             dead = true
 
-            Globals.screenshake(2, 0.2)
+            Globals.screenshake(screenshake_die, 0.3)
 
             var inst: CPUParticles2D = particles.instantiate()
             inst.position = position

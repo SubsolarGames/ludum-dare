@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://pbqyrembfe7p"]
+
+[ext_resource type="Script" uid="uid://crmkuc4m6eiy" path="res://scripts/piercebullet.gd" id="1_4pwa6"]
+[ext_resource type="PackedScene" uid="uid://b1xodmbvc5we7" path="res://scenes/bullet_particle.tscn" id="2_btvhk"]
+[ext_resource type="Texture2D" uid="uid://b1m3us68krmwi" path="res://assets/piercebullet.png" id="3_qiepi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(16, 10)
+
+[node name="piercebullet" type="Node2D"]
+script = ExtResource("1_4pwa6")
+particles = ExtResource("2_btvhk")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_qiepi")
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="hitbox" type="CollisionShape2D" parent="area"]
+shape = SubResource("RectangleShape2D_y25gk")
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

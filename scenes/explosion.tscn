@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://byhci2kfstxmh"]
+[gd_scene load_steps=9 format=3 uid="uid://1rl05ia0di4e"]
 
-[ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_yl51b"]
-[ext_resource type="Texture2D" uid="uid://drfi0jc8ow1ec" path="res://assets/ring.png" id="2_dbf24"]
+[ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_nfeox"]
+[ext_resource type="Texture2D" uid="uid://7ehqolxu6jkx" path="res://assets/explosion.png" id="2_nfeox"]
+[ext_resource type="Script" uid="uid://bblhu5sugcvce" path="res://scripts/explosion.gd" id="3_aw4cw"]
 
 [sub_resource type="Curve" id="Curve_evr2q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.827251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -68,23 +69,25 @@ _data = {
 &"appear": SubResource("Animation_p7225")
 }
 
-[node name="powerup_particles" type="CPUParticles2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfeox"]
+radius = 64.0078
+
+[node name="explosion" type="CPUParticles2D"]
 emitting = false
-lifetime = 0.5
+lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 75.0
-initial_velocity_max = 125.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
 damping_min = 100.0
 damping_max = 200.0
 angle_max = 360.0
-scale_amount_min = 4.0
-scale_amount_max = 8.0
+scale_amount_min = 6.0
+scale_amount_max = 12.0
 scale_amount_curve = SubResource("Curve_evr2q")
-color = Color(0.172549, 0.909804, 0.960784, 1)
-script = ExtResource("1_yl51b")
+script = ExtResource("1_nfeox")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ring")
@@ -94,7 +97,17 @@ libraries = {
 autoplay = "appear"
 
 [node name="ring" type="Sprite2D" parent="."]
-modulate = Color(0.172549, 0.909804, 0.960784, 1)
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("2_dbf24")
+texture = ExtResource("2_nfeox")
+script = ExtResource("3_aw4cw")
+
+[node name="Area2D" type="Area2D" parent="ring"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ring/Area2D"]
+shape = SubResource("CircleShape2D_nfeox")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="body_entered" from="ring/Area2D" to="ring" method="_on_area_2d_body_entered"]
