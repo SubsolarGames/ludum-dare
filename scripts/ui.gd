@@ -5,10 +5,17 @@ var target_scene: String = ""
 
 
 func _ready() -> void:
+    if Globals.level % 2 == 1:
+        $AnimatedSprite2D.frame = int(Globals.level / 2) + 1
+        $AnimatedSprite2D/anim.play("appear")
+
     $transition.visible = true
     $anim.play_backwards("appear")
     Globals.player_died.connect(func():
         $anim.play_backwards("appear"))
+
+    Globals.finished.connect(func():
+        $portaltext/anim.play("appear"))
 
 
 func transition(scene_name: String) -> void:

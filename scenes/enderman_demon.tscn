@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3xgsbcg44exq"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_5q1og"]
+[ext_resource type="PackedScene" uid="uid://b6cb1g4i48p48" path="res://scenes/bigdemon_particles.tscn" id="2_l8hej"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_ogggm"]
+[ext_resource type="Shader" uid="uid://13k7laf8letq" path="res://shaders/blink.gdshader" id="3_l8hej"]
+[ext_resource type="Texture2D" uid="uid://s0snkllerii" path="res://assets/enderman.png" id="3_ogggm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8hej"]
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5t5m"]
+resource_local_to_scene = true
+shader = ExtResource("2_ogggm")
+shader_parameter/active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pqh2x"]
+resource_local_to_scene = true
+shader = ExtResource("3_l8hej")
+shader_parameter/end_time = 2.0
+shader_parameter/start_freq = 1.0
+shader_parameter/end_freq = 10.0
+shader_parameter/time = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/blink_length = 0.5
+
+[node name="enderman_demon" instance=ExtResource("1_5q1og")]
+particles = ExtResource("2_l8hej")
+innac = 25.0
+speed_min = 60.0
+speed_max = 80.0
+screenshake_die = 4
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_l8hej")
+
+[node name="sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_e5t5m")
+texture = ExtResource("3_ogggm")
+
+[node name="exclam" parent="." index="3"]
+material = SubResource("ShaderMaterial_pqh2x")

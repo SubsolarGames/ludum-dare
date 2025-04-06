@@ -129,6 +129,9 @@ func _physics_process(delta: float) -> void:
 				shell.position = $gun/shell_marker.global_position
 				shell.rotation = $gun.rotation
 				get_parent().add_child(shell)
+				print((gun.fire_rate / 0.2))
+				$gun/anim.speed_scale = (0.2/gun.fire_rate)
+				$gun/anim.play("shoot")
 
 				var angle = 0
 				var angle_dir = 1

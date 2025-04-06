@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4r5b1b0pb6t7"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_avhct"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_fmfpa"]
+[ext_resource type="PackedScene" uid="uid://cnhoili2xoo20" path="res://scenes/demon_particles.tscn" id="2_viuaj"]
+[ext_resource type="Shader" uid="uid://13k7laf8letq" path="res://shaders/blink.gdshader" id="3_viuaj"]
+[ext_resource type="Texture2D" uid="uid://b7gsosauue72y" path="res://assets/farmer.png" id="4_viuaj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_viuaj"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ag8b"]
+resource_local_to_scene = true
+shader = ExtResource("2_fmfpa")
+shader_parameter/active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nrse"]
+resource_local_to_scene = true
+shader = ExtResource("3_viuaj")
+shader_parameter/end_time = 2.0
+shader_parameter/start_freq = 1.0
+shader_parameter/end_freq = 10.0
+shader_parameter/time = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/blink_length = 0.5
+
+[node name="farmer_demon" instance=ExtResource("1_avhct")]
+particles = ExtResource("2_viuaj")
+health = 3.0
+innac = 100.0
+speed_min = 20.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_viuaj")
+
+[node name="sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_0ag8b")
+texture = ExtResource("4_viuaj")
+
+[node name="exclam" parent="." index="3"]
+material = SubResource("ShaderMaterial_0nrse")
