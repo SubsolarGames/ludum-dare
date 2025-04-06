@@ -29,6 +29,16 @@ var gun = pistol
 var gunscale: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	if Globals.level == 8:
+		can_move = false
+		get_tree().create_timer(3.0).timeout.connect(func():
+			can_move = true)
+
+	Globals.game_won.connect(func():
+		invincible = true
+	)
+	
+
 	Globals.player = self
 
 

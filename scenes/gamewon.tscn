@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://doxskme1ffj5k"]
+[gd_scene load_steps=18 format=3 uid="uid://gm6x4r2evtw3"]
 
-[ext_resource type="Shader" uid="uid://nq0ebn32qm6g" path="res://shaders/dissolve.gdshader" id="1_0sipp"]
-[ext_resource type="Script" uid="uid://cevhn3qqn1erd" path="res://scripts/cutscene.gd" id="1_2bm7f"]
-[ext_resource type="Texture2D" uid="uid://bkwtqg62d22no" path="res://assets/story.png" id="1_edmg7"]
-[ext_resource type="Script" uid="uid://dhkuityjw3rd1" path="res://scripts/camera.gd" id="2_a320b"]
-[ext_resource type="Texture2D" uid="uid://cyu43p7aontnn" path="res://assets/cursor.png" id="5_bb0yx"]
-[ext_resource type="Script" uid="uid://yw8pypnucew3" path="res://scripts/cursor.gd" id="6_3ptll"]
-[ext_resource type="Shader" uid="uid://bkel7vaj2wtr5" path="res://shaders/transition.gdshader" id="7_3ptll"]
+[ext_resource type="Script" uid="uid://deeessvvv55lb" path="res://scripts/gamewon.gd" id="1_8n8vy"]
+[ext_resource type="Shader" uid="uid://nq0ebn32qm6g" path="res://shaders/dissolve.gdshader" id="2_j2wql"]
+[ext_resource type="Texture2D" uid="uid://cnrsg6qvx54r6" path="res://assets/gamewon.png" id="3_8n8vy"]
+[ext_resource type="Script" uid="uid://dhkuityjw3rd1" path="res://scripts/camera.gd" id="4_68a6d"]
+[ext_resource type="Texture2D" uid="uid://cyu43p7aontnn" path="res://assets/cursor.png" id="5_yedts"]
+[ext_resource type="Script" uid="uid://yw8pypnucew3" path="res://scripts/cursor.gd" id="6_ge5xw"]
+[ext_resource type="Shader" uid="uid://bkel7vaj2wtr5" path="res://shaders/transition.gdshader" id="7_wpp3g"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0sipp"]
 
@@ -14,49 +14,17 @@
 noise = SubResource("FastNoiseLite_0sipp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2bm7f"]
-shader = ExtResource("1_0sipp")
+shader = ExtResource("2_j2wql")
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_0sipp")
 shader_parameter/dissolve_value = 0.0
 shader_parameter/burn_size = 0.0
 shader_parameter/burn_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a320b"]
-atlas = ExtResource("1_edmg7")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0sipp"]
-atlas = ExtResource("1_edmg7")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2bm7f"]
-atlas = ExtResource("1_edmg7")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs8wb"]
-atlas = ExtResource("1_edmg7")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bb0yx"]
-atlas = ExtResource("1_edmg7")
-region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_l8ll4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfal0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a320b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0sipp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2bm7f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fs8wb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bb0yx")
+"texture": ExtResource("3_8n8vy")
 }],
 "loop": true,
 "name": &"default",
@@ -133,22 +101,22 @@ offsets = PackedFloat32Array(0.602978, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d18fx"]
-shader = ExtResource("7_3ptll")
+shader = ExtResource("7_wpp3g")
 shader_parameter/progress = 0.0
 shader_parameter/diamondPixelSize = 32.0
 
-[node name="cutscene" type="Node2D"]
-script = ExtResource("1_2bm7f")
+[node name="gamewon" type="Node2D"]
+script = ExtResource("1_8n8vy")
 
 [node name="scenes" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_2bm7f")
-sprite_frames = SubResource("SpriteFrames_l8ll4")
+sprite_frames = SubResource("SpriteFrames_nfal0")
 
 [node name="anim" type="AnimationPlayer" parent="scenes"]
 libraries = {
 &"": SubResource("AnimationLibrary_2bm7f")
 }
-autoplay = "appear"
+autoplay = "trans"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(0, 128)
@@ -165,12 +133,12 @@ color_ramp = SubResource("Gradient_edmg7")
 
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2(128, 128)
-script = ExtResource("2_a320b")
+script = ExtResource("4_68a6d")
 always = true
 
 [node name="cursor" type="Sprite2D" parent="."]
-texture = ExtResource("5_bb0yx")
-script = ExtResource("6_3ptll")
+texture = ExtResource("5_yedts")
+script = ExtResource("6_ge5xw")
 always = true
 
 [node name="transition" type="ColorRect" parent="."]

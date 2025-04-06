@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://d135eri20xldr"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_p7x42"]
+[ext_resource type="Script" uid="uid://bew6p8wj3ki82" path="res://scripts/pitchfork.gd" id="2_73mbj"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_n3yny"]
+[ext_resource type="Shader" uid="uid://13k7laf8letq" path="res://shaders/blink.gdshader" id="3_73mbj"]
+[ext_resource type="PackedScene" uid="uid://b6cb1g4i48p48" path="res://scenes/bigdemon_particles.tscn" id="3_fsbvd"]
+[ext_resource type="Texture2D" uid="uid://bllrvj5u6q6n2" path="res://assets/pitchfok.png" id="3_n3yny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73mbj"]
+size = Vector2(19, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3yny"]
+size = Vector2(41, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsbvd"]
+resource_local_to_scene = true
+shader = ExtResource("2_n3yny")
+shader_parameter/active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcggw"]
+resource_local_to_scene = true
+shader = ExtResource("3_73mbj")
+shader_parameter/end_time = 2.0
+shader_parameter/start_freq = 1.0
+shader_parameter/end_freq = 10.0
+shader_parameter/time = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/blink_length = 0.5
+
+[sub_resource type="Animation" id="Animation_fsbvd"]
+resource_name = "appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1.3, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xcggw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xcggw"]
+_data = {
+&"RESET": SubResource("Animation_xcggw"),
+&"appear": SubResource("Animation_fsbvd")
+}
+
+[node name="pitchfork" instance=ExtResource("1_p7x42")]
+scale = Vector2(1e-05, 1)
+script = ExtResource("2_73mbj")
+particles = ExtResource("3_fsbvd")
+health = 5.0
+speed_min = 100.0
+speed_max = 150.0
+accel = 3.0
+friction = 3.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(20.5, 1)
+shape = SubResource("RectangleShape2D_73mbj")
+disabled = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-8.5, 1.5)
+shape = SubResource("RectangleShape2D_n3yny")
+
+[node name="sprite" parent="." index="2"]
+visible = true
+material = SubResource("ShaderMaterial_fsbvd")
+texture = ExtResource("3_n3yny")
+
+[node name="exclam" parent="." index="4"]
+visible = false
+material = SubResource("ShaderMaterial_xcggw")
+
+[node name="anim2" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_xcggw")
+}
+autoplay = "appear"

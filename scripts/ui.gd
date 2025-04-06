@@ -15,7 +15,14 @@ func _ready() -> void:
         $anim.play_backwards("appear"))
 
     Globals.finished.connect(func():
-        $portaltext/anim.play("appear"))
+        if Globals.level != 8:
+            $portaltext/anim.play("appear"))
+
+    Globals.game_won.connect(func():
+        get_tree().create_timer(1.0).timeout.connect(func():
+            transition("gamewon"))
+        )
+
 
 
 func transition(scene_name: String) -> void:

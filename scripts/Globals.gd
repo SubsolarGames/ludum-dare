@@ -5,6 +5,7 @@ signal shooter_start
 signal next_level
 signal player_died 
 signal finished
+signal game_won
 
 var player: CharacterBody2D
 var checkpoint: Vector2 = Vector2.ZERO
@@ -20,6 +21,8 @@ var end_time: float = 0.0
 var powerups: Array[float] = []
 var blue_flash: float = 0.0
 var level: int = 1
+var satan_pos: Vector2 = Vector2.ZERO
+
 
 func screenshake(strength, length) -> void:
     shake = max(shake, strength) * screenshake_mul

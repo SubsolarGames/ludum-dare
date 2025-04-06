@@ -10,6 +10,7 @@ class_name enemy_parent
 @export var friction: float = 8
 @export var screenshake_hit: int = 1
 @export var screenshake_die: int = 3
+@export var die_length: float = 0.3
 
 @onready var speed: float = randf_range(speed_min, speed_max)
 @onready var innac_vector: Vector2 = Vector2(randf_range(-innac, innac), randf_range(-innac, innac))
@@ -49,12 +50,14 @@ func damage(amount: int):
 		else:
 			dead = true
 
-			Globals.screenshake(screenshake_die, 0.3)
+			Globals.screenshake(screenshake_die, die_length)
 
 			var inst: CPUParticles2D = particles.instantiate()
 			inst.position = position
 			inst.rotation = rotation
 			get_parent().add_child(inst)
+
+			other_stuff()
 
 			queue_free()
 
@@ -64,3 +67,6 @@ func _on_timer_timeout() -> void:
 	$CollisionShape2D.disabled = false
 	$exclam.visible = false
 	$sprite.visible = true
+
+func other_stuff() -> void:
+	pass

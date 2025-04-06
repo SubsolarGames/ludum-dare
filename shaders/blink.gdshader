@@ -11,7 +11,7 @@ void fragment() {
 	float phase = 2.0 * PI * (start_freq * time + (end_freq - start_freq) / (2.0 * end_time) * time*time);
 	float wave = sin(phase);
 	float blink_wave = wave * (1.0/blink_length) - (1.0/blink_length) + 1.0;
-	
+
 	vec4 t = texture(TEXTURE, UV);
 	if (blink_wave > 0.0) {
     	vec3 colorMix = mix(t.rgb, flash_color.rgb, blink_wave);
