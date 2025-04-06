@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgx37yrssc7w6"]
+
+[ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_glj28"]
+[ext_resource type="Script" uid="uid://di4eq7andfhvf" path="res://scripts/satan.gd" id="2_1ebst"]
+[ext_resource type="Shader" uid="uid://dwoghbwjx1f1t" path="res://shaders/flash.gdshader" id="2_cd7h3"]
+[ext_resource type="Shader" uid="uid://13k7laf8letq" path="res://shaders/blink.gdshader" id="3_1ebst"]
+[ext_resource type="Texture2D" uid="uid://decanr4uocmsl" path="res://assets/satan.png" id="3_cd7h3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfmm1"]
+resource_local_to_scene = true
+shader = ExtResource("2_cd7h3")
+shader_parameter/active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2cv8"]
+resource_local_to_scene = true
+shader = ExtResource("3_1ebst")
+shader_parameter/end_time = 2.0
+shader_parameter/start_freq = 1.0
+shader_parameter/end_freq = 10.0
+shader_parameter/time = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/blink_length = 0.5
+
+[node name="satan" instance=ExtResource("1_glj28")]
+script = ExtResource("2_1ebst")
+health = 100.0
+speed_min = 60.0
+speed_max = 60.0
+screenshake_die = 5
+
+[node name="sprite" parent="." index="1"]
+visible = true
+material = SubResource("ShaderMaterial_xfmm1")
+texture = ExtResource("3_cd7h3")
+
+[node name="exclam" parent="." index="3"]
+visible = false
+material = SubResource("ShaderMaterial_i2cv8")

@@ -6,7 +6,7 @@ var target_scene: String = ""
 
 func _ready() -> void:
     if Globals.level % 2 == 1:
-        $AnimatedSprite2D.frame = int(Globals.level / 2) + 1
+        $AnimatedSprite2D.frame = int(Globals.level / 2)
         $AnimatedSprite2D/anim.play("appear")
 
     $transition.visible = true

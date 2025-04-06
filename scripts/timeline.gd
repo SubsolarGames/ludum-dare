@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	visible = not Globals.platformer
+	print(Globals.timer)
 	value = Globals.timer * (100.0/Globals.end_time)
 
 	if len(Globals.powerups) > 0 and not Globals.platformer:
