@@ -250,7 +250,7 @@ _data = {
 [node name="satan" instance=ExtResource("1_glj28")]
 script = ExtResource("2_1ebst")
 particles = ExtResource("3_hsluw")
-health = 5.0
+health = 50.0
 speed_min = 60.0
 speed_max = 60.0
 screenshake_die = 5

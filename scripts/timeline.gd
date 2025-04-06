@@ -24,7 +24,8 @@ func _process(_delta: float) -> void:
 
 			Globals.player.gun = [Globals.player.shotgun, Globals.player.minigun,Globals.player.sniper,Globals.player.wand,Globals.player.clawgun].pick_random()
 			get_tree().create_timer(5).timeout.connect(func():
-				Globals.player.gun = Globals.player.pistol)
+				if Globals.player != null:
+					Globals.player.gun = Globals.player.pistol)
 
 	if not Globals.platformer:
 		if Globals.timer > Globals.end_time and not fin:

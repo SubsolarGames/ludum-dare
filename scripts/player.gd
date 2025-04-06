@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var top_accel: float = 15
 @export var top_friction: float = 18
 @export var jumps: int = 1
+@export var dash_speed: float = 500.0
 
 var invincible: bool = false
 var can_move: bool = true
@@ -37,7 +38,7 @@ func _ready() -> void:
 	Globals.game_won.connect(func():
 		invincible = true
 	)
-	
+
 
 	Globals.player = self
 
@@ -124,6 +125,12 @@ func _physics_process(delta: float) -> void:
 			$gun.flip_v = false
 
 		$gun/flash.modulate.a = 0.0
+
+		if Input.is_action_just_pressed("action"):
+			invincible = true
+			get_tree().create_timer(0.2).timeout.connect(func():
+				invincible = false)
+			velocity = velocity.normalized() * dash_speed
 
 		if Input.is_action_pressed("mouse action"):
 			if $fire_timer.time_left == 0:
@@ -214,3 +221,7 @@ func _on_area_body_entered(_body: Node2D) -> void:
 
 func _on_area_area_entered(_area: Area2D) -> void:
 	damage(1)
+
+
+func _on_area_2_body_entered(body:Node2D) -> void:
+	velocity.y = -2 * jump_force

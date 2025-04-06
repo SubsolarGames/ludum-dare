@@ -13,5 +13,6 @@ func _on_timer_timeout() -> void:
     inst.position = position
     get_parent().add_child(inst)
 
-    $Timer.wait_time *= 0.95
+    if $Timer.wait_time > 1.0:
+        $Timer.wait_time *= 0.95
     $Timer.start()

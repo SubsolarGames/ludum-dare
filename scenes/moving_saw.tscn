@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://djicrm261p177"]
+
+[ext_resource type="PackedScene" uid="uid://d7jfo6hicsyx" path="res://scenes/saw.tscn" id="1_4g5wo"]
+[ext_resource type="Script" uid="uid://dkkquresfyybv" path="res://scripts/moving_saw.gd" id="1_qjopn"]
+
+[node name="moving_saw" type="Path2D"]
+script = ExtResource("1_qjopn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="saw" parent="PathFollow2D" instance=ExtResource("1_4g5wo")]
