@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bm2tmyoo33bk0"]
+[gd_scene load_steps=32 format=3 uid="uid://bm2tmyoo33bk0"]
 
 [ext_resource type="Texture2D" uid="uid://w3qkml30io4f" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b7jv38klwvb2u" path="res://scripts/player.gd" id="1_g2els"]
@@ -12,6 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://dyk4yhmv6ixga" path="res://assets/sniper.png" id="9_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://cgipd0rutyvi4" path="res://assets/clawgun.png" id="10_oprun"]
 [ext_resource type="Texture2D" uid="uid://dqq6cxpkqlimd" path="res://assets/wand.png" id="11_a8ls1"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="13_jej6c"]
+[ext_resource type="AudioStream" uid="uid://boq813etla00h" path="res://sfx/playerjump.wav" id="14_f1ej7"]
+[ext_resource type="AudioStream" uid="uid://hq523unpqnc0" path="res://sfx/playerdie.wav" id="15_oprun"]
+[ext_resource type="AudioStream" uid="uid://cmyoolwinoeqs" path="res://sfx/mushroom.wav" id="16_a8ls1"]
+[ext_resource type="AudioStream" uid="uid://i3m4vdirv6mv" path="res://sfx/playershoot.wav" id="17_qfm1y"]
+[ext_resource type="AudioStream" uid="uid://ctxngnqnwuhve" path="res://sfx/special shoot.wav" id="18_fulsm"]
+[ext_resource type="AudioStream" uid="uid://qto5pogg3m74" path="res://sfx/dash.wav" id="19_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://cl4tv7ysxg3yp" path="res://assets/wings.png" id="20_60mlk"]
 
 [sub_resource type="Curve" id="Curve_tuyoq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791971, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -318,6 +326,37 @@ collision_mask = 16
 [node name="hurtbox" type="CollisionShape2D" parent="area2"]
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="jump" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("14_f1ej7")
+
+[node name="die" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("15_oprun")
+pitch_range = 0.1
+
+[node name="mushroom" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("16_a8ls1")
+
+[node name="shoot" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("17_qfm1y")
+volume_db = -3.0
+pitch_range = 0.3
+
+[node name="special shoot" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("18_fulsm")
+volume_db = -2.0
+pitch_range = 0.3
+
+[node name="dash" parent="." instance=ExtResource("13_jej6c")]
+stream = ExtResource("19_4r5pv")
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Wings" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("20_60mlk")
 
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

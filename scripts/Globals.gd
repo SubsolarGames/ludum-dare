@@ -22,6 +22,10 @@ var powerups: Array[float] = []
 var blue_flash: float = 0.0
 var level: int = 1
 var satan_pos: Vector2 = Vector2.ZERO
+var playerded: bool = false
+var saved_marker: Array[float] = []
+var sound_part: float = 0.0
+var last_checkpoint: float = 0.0
 
 
 func screenshake(strength, length) -> void:

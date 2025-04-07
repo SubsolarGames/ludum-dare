@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6cb1g4i48p48"]
+[gd_scene load_steps=9 format=3 uid="uid://b6cb1g4i48p48"]
 
 [ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_u4iyd"]
 [ext_resource type="Texture2D" uid="uid://b4786spifffcq" path="res://assets/ring2.png" id="2_u4iyd"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="3_5r7t1"]
+[ext_resource type="AudioStream" uid="uid://bg3fgv3kbqw06" path="res://sfx/enemydie.wav" id="4_t6vr2"]
 
 [sub_resource type="Curve" id="Curve_evr2q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.827251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -98,3 +100,7 @@ modulate = Color(0.894118, 0.231373, 0.266667, 1)
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_u4iyd")
+
+[node name="sound" parent="." instance=ExtResource("3_5r7t1")]
+stream = ExtResource("4_t6vr2")
+startplay = true

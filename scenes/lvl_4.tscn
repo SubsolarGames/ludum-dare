@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dnqonfq8im0id"]
+[gd_scene load_steps=9 format=4 uid="uid://dnqonfq8im0id"]
 
 [ext_resource type="PackedScene" uid="uid://cieejwek827ra" path="res://scenes/world.tscn" id="1_ub1bb"]
 [ext_resource type="PackedScene" uid="uid://bcfkptqm0ltt7" path="res://scenes/spawner.tscn" id="3_2k03n"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://tyxnr1f87hgv" path="res://scenes/bug_demon.tscn" id="5_83mxe"]
 [ext_resource type="PackedScene" uid="uid://vyni8kjujpnq" path="res://scenes/big_demon.tscn" id="6_q8qpk"]
 [ext_resource type="PackedScene" uid="uid://b4ygeg8v154fw" path="res://scenes/exit.tscn" id="7_a8r6q"]
+[ext_resource type="AudioStream" uid="uid://qn1qetxo5cat" path="res://sfx/lvl1.mp3" id="8_y1kb8"]
 
 [node name="world" instance=ExtResource("1_ub1bb")]
 
@@ -99,3 +100,6 @@ position = Vector2(-161, 37)
 
 [node name="exit" parent="." index="30" instance=ExtResource("7_a8r6q")]
 position = Vector2(-32, 112)
+
+[node name="sound" parent="." index="31"]
+stream = ExtResource("8_y1kb8")

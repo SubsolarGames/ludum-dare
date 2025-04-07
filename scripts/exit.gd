@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
     if enabled and not open:
+        Globals.last_checkpoint = 0.0
         open = true
         Globals.slowdown(0.05, 0.3)
         Globals.screenshake(4, 0.3)
@@ -25,4 +26,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 
         Globals.level += 1
 
+        $sound.p()
+
         Globals.next_level.emit()
+
+        Globals.end_time = Globals.timer * Globals.time_mul

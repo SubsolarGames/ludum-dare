@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 			inst.position = position
 			inst.damage = 1
 			inst.rotation = position.angle_to_point(Globals.player.position)
-			inst.velocity = Vector2(100, 0).rotated(position.angle_to_point(Globals.player.position))
+			inst.velocity = Vector2(75, 0).rotated(position.angle_to_point(Globals.player.position))
 			get_parent().add_child(inst)
 
 

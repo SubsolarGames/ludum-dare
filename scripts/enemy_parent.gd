@@ -41,6 +41,7 @@ func damage(amount: int):
 		health -= amount
 
 		if health > 0:
+			$hit.p()
 			Globals.screenshake(screenshake_hit, 0.2)
 
 			$sprite.material.set_shader_parameter("active", true)

@@ -61,6 +61,7 @@ func _process(delta: float) -> void:
 		$Hand2.visible= true
 
 		if $slamrate.time_left == 0.0:
+			$slam.p()
 			$slamrate.start()
 
 			$attack_anim.play("slam")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgx37yrssc7w6"]
+[gd_scene load_steps=22 format=3 uid="uid://dgx37yrssc7w6"]
 
 [ext_resource type="PackedScene" uid="uid://dgcclrvb67xa0" path="res://scenes/enemy_parent.tscn" id="1_glj28"]
 [ext_resource type="Script" uid="uid://di4eq7andfhvf" path="res://scripts/satan.gd" id="2_1ebst"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dm6e5cbag2wkw" path="res://assets/circle.png" id="7_i2cv8"]
 [ext_resource type="Texture2D" uid="uid://drwq6wg8bji72" path="res://assets/hand1.png" id="8_q5tia"]
 [ext_resource type="Texture2D" uid="uid://npyb66147pfn" path="res://assets/hand2.png" id="9_hsluw"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="11_lsc1n"]
+[ext_resource type="AudioStream" uid="uid://cquqjd546o0ng" path="res://sfx/slam.wav" id="12_4wlo3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ebst"]
 height = 48.0
@@ -90,6 +92,81 @@ _data = {
 &"shoot": SubResource("Animation_i2cv8")
 }
 
+[sub_resource type="Animation" id="Animation_hsluw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-45, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_q5tia"]
 resource_name = "slam"
 length = 0.5
@@ -166,81 +243,6 @@ tracks/5/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_hsluw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hand1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hand1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-45, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hand1:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hand2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(40, 10)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hand2:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Hand2:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsluw"]
 _data = {
 &"RESET": SubResource("Animation_hsluw"),
@@ -250,7 +252,7 @@ _data = {
 [node name="satan" instance=ExtResource("1_glj28")]
 script = ExtResource("2_1ebst")
 particles = ExtResource("3_hsluw")
-health = 50.0
+health = 100.0
 speed_min = 60.0
 speed_max = 60.0
 screenshake_die = 5
@@ -308,3 +310,6 @@ libraries = {
 
 [node name="slamrate" type="Timer" parent="." index="10"]
 one_shot = true
+
+[node name="slam" parent="." index="12" instance=ExtResource("11_lsc1n")]
+stream = ExtResource("12_4wlo3")

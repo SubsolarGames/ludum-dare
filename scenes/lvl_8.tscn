@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cvd3gg5kbc5im"]
+[gd_scene load_steps=10 format=4 uid="uid://cvd3gg5kbc5im"]
 
 [ext_resource type="PackedScene" uid="uid://cieejwek827ra" path="res://scenes/world.tscn" id="1_w7mev"]
 [ext_resource type="PackedScene" uid="uid://dgx37yrssc7w6" path="res://scenes/satan.tscn" id="2_lp5m4"]
 [ext_resource type="PackedScene" uid="uid://yt56rhb1ob3b" path="res://scenes/grass_clump.tscn" id="3_qmcrp"]
 [ext_resource type="Texture2D" uid="uid://cwdek4q8un803" path="res://assets/hand.png" id="4_iv547"]
 [ext_resource type="LabelSettings" uid="uid://7g156wkvquy2" path="res://fonts/defaultfont.tres" id="5_6u1ew"]
+[ext_resource type="AudioStream" uid="uid://6l0vewsi44ph" path="res://sfx/bossfight.mp3" id="6_lp5m4"]
 
 [sub_resource type="Animation" id="Animation_2k03n"]
 length = 0.001
@@ -270,3 +271,6 @@ text = "wassup
 it's me, Satan"
 label_settings = ExtResource("5_6u1ew")
 horizontal_alignment = 1
+
+[node name="sound" parent="." index="25"]
+stream = ExtResource("6_lp5m4")

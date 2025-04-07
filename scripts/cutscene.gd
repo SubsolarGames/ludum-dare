@@ -3,6 +3,7 @@ extends Node2D
 
 func _process(delta: float) -> void:
     if Input.is_action_just_pressed("mouse action"):
+        $sound.p()
         Globals.screenshake(3, 0.3)
         $scenes/anim.play_backwards("appear")
         get_tree().create_timer(1.0).timeout.connect(func():

@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyl7neccrtk3e"]
+[gd_scene load_steps=9 format=3 uid="uid://dyl7neccrtk3e"]
 
 [ext_resource type="Script" uid="uid://dw28n6swdyqtg" path="res://scripts/particles.gd" id="1_jdjjw"]
 [ext_resource type="Texture2D" uid="uid://cv4nuwu41bm6n" path="res://assets/ring4.png" id="2_jdjjw"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="3_lvkma"]
+[ext_resource type="AudioStream" uid="uid://b7kvrmfg86m1o" path="res://sfx/bossdie.wav" id="4_juriu"]
 
 [sub_resource type="Curve" id="Curve_evr2q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.827251, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -99,3 +101,8 @@ modulate = Color(0.894118, 0.231373, 0.266667, 1)
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_jdjjw")
+
+[node name="sound" parent="." instance=ExtResource("3_lvkma")]
+stream = ExtResource("4_juriu")
+startplay = true
+pitch_range = 0.0

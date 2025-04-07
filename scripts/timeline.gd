@@ -10,19 +10,27 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	visible = not Globals.platformer
-	print(Globals.timer)
 	value = Globals.timer * (100.0/Globals.end_time)
 
 	if len(Globals.powerups) > 0 and not Globals.platformer:
 		if Globals.timer > Globals.powerups[0]:
+
+			get_parent().get_node("sound").p()
 			insts[counter].use()
 			counter += 1
+
+			Globals.last_checkpoint = Globals.timer
+			print(Globals.last_checkpoint)
 			Globals.powerups.pop_front()
 			Globals.blue_flash = 0.5
 			get_tree().create_timer(0.15).timeout.connect(func():
 				Globals.blue_flash = false)
 
-			Globals.player.gun = [Globals.player.shotgun, Globals.player.minigun,Globals.player.sniper,Globals.player.wand,Globals.player.clawgun].pick_random()
+			var guns = [Globals.player.shotgun, Globals.player.minigun,Globals.player.sniper,Globals.player.wand,Globals.player.clawgun]
+			if Globals.player.gun in guns:
+				guns.erase(Globals.player.gun)
+
+			Globals.player.gun = guns.pick_random()
 			get_tree().create_timer(5).timeout.connect(func():
 				if Globals.player != null:
 					Globals.player.gun = Globals.player.pistol)

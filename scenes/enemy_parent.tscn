@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgcclrvb67xa0"]
+[gd_scene load_steps=12 format=3 uid="uid://dgcclrvb67xa0"]
 
 [ext_resource type="Script" uid="uid://swpwah3kv2hu" path="res://scripts/enemy_parent.gd" id="1_1qelp"]
 [ext_resource type="Material" uid="uid://cys6y2s8j18n3" path="res://shaders/flash.tres" id="2_cvxv5"]
 [ext_resource type="Texture2D" uid="uid://cdp43px853ske" path="res://assets/exclam.png" id="3_3tdty"]
 [ext_resource type="Shader" uid="uid://13k7laf8letq" path="res://shaders/blink.gdshader" id="3_lijk5"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="5_8ar56"]
+[ext_resource type="AudioStream" uid="uid://djwack7m4mob1" path="res://sfx/hit.wav" id="6_67wcj"]
 
 [sub_resource type="Animation" id="Animation_cvxv5"]
 length = 0.001
@@ -168,5 +170,9 @@ texture = ExtResource("3_3tdty")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="hit" parent="." instance=ExtResource("5_8ar56")]
+stream = ExtResource("6_67wcj")
+pitch_range = 0.3
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

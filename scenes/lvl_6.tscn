@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://c5b0b2ntxui0i"]
+[gd_scene load_steps=9 format=4 uid="uid://c5b0b2ntxui0i"]
 
 [ext_resource type="PackedScene" uid="uid://cieejwek827ra" path="res://scenes/world.tscn" id="1_xkjjm"]
 [ext_resource type="PackedScene" uid="uid://yt56rhb1ob3b" path="res://scenes/grass_clump.tscn" id="2_iqhc2"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cdbaufigjyw3i" path="res://scenes/skull_demon.tscn" id="4_6mcdi"]
 [ext_resource type="PackedScene" uid="uid://c3xgsbcg44exq" path="res://scenes/enderman_demon.tscn" id="4_c5gds"]
 [ext_resource type="PackedScene" uid="uid://dlun0t8ubfsge" path="res://scenes/basic_demon.tscn" id="4_hwf83"]
+[ext_resource type="AudioStream" uid="uid://cshtx75aodjf2" path="res://sfx/lvl2.mp3" id="7_sgsgn"]
+[ext_resource type="PackedScene" uid="uid://b4ygeg8v154fw" path="res://scenes/exit.tscn" id="8_j5fxc"]
 
 [node name="world" instance=ExtResource("1_xkjjm")]
 
@@ -161,3 +163,9 @@ position = Vector2(-148, -122)
 
 [node name="skull_demon2" parent="." index="51" instance=ExtResource("4_6mcdi")]
 position = Vector2(-377, -42)
+
+[node name="sound" parent="." index="52"]
+stream = ExtResource("7_sgsgn")
+
+[node name="exit" parent="." index="53" instance=ExtResource("8_j5fxc")]
+position = Vector2(-64, 224)

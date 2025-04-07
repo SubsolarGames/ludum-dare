@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmrbun45pn7w8"]
+[gd_scene load_steps=10 format=3 uid="uid://dmrbun45pn7w8"]
 
 [ext_resource type="Script" uid="uid://dunvcwah2nn4p" path="res://scripts/flag.gd" id="1_32e5v"]
 [ext_resource type="Texture2D" uid="uid://pblh3evyr64r" path="res://assets/flag-Sheet.png" id="1_76ss4"]
 [ext_resource type="PackedScene" uid="uid://b5qgw0ptjgtkf" path="res://scenes/flag_particles.tscn" id="2_q38m2"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="4_tjkec"]
+[ext_resource type="AudioStream" uid="uid://do8c2u2sfn5es" path="res://sfx/checkpoint.wav" id="5_s5mf2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32e5v"]
 atlas = ExtResource("1_76ss4")
@@ -42,5 +44,9 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-3, 1)
 shape = SubResource("RectangleShape2D_76ss4")
+
+[node name="sound" parent="." instance=ExtResource("4_tjkec")]
+stream = ExtResource("5_s5mf2")
+pitch_range = 0.1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

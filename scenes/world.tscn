@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cieejwek827ra"]
+[gd_scene load_steps=8 format=3 uid="uid://cieejwek827ra"]
 
 [ext_resource type="Script" uid="uid://bgv7w75qe8q1f" path="res://scripts/level.gd" id="1_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cf5egcy3v24n6" path="res://scenes/ui.tscn" id="2_4wyf3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b20y4832jdfxf" path="res://scenes/tilemap.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://bm2tmyoo33bk0" path="res://scenes/player.tscn" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://c4no322yfb11k" path="res://scripts/blueflash.gd" id="5_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://dqn4gtsgkmlsc" path="res://scenes/sound.tscn" id="7_i7141"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_qfnet")
@@ -28,3 +29,7 @@ offset_right = 136.0
 offset_bottom = 140.0
 color = Color(0.172549, 0.909804, 0.960784, 1)
 script = ExtResource("5_4mrxx")
+
+[node name="sound" parent="." instance=ExtResource("7_i7141")]
+loop = true
+pitch_range = 0.0

@@ -17,3 +17,5 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
         get_parent().add_child(inst)
 
         $AnimatedSprite2D.frame = 1
+
+        $sound.p()

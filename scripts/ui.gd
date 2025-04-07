@@ -15,7 +15,7 @@ func _ready() -> void:
         $anim.play_backwards("appear"))
 
     Globals.finished.connect(func():
-        if Globals.level != 8:
+        if Globals.level != 8 and not Globals.playerded:
             $portaltext/anim.play("appear"))
 
     Globals.game_won.connect(func():
